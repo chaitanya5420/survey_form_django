@@ -82,6 +82,7 @@ def page2(request):
         form = Page2Form(request.POST)
         if form.is_valid():
             request.session['page2'] = form.cleaned_data
+            print(request.session['page2'])
             return render(request, "message.html", {"message": "Congratulations! You are one step away."})
         else:
             return render(request, "message.html", {"message": "Thank you for your participation."})
