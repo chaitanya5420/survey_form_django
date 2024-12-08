@@ -65,8 +65,12 @@ def page1(request):
         form = Page1Form(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            if data['category'] == 'others' and data['other_category']:
+                data['category'] = data['other_category']
             data['date_of_birth'] = data['date_of_birth'].strftime('%Y-%m-%d')  # Serialize date
             request.session['page1'] = form.cleaned_data
+            print(request.session['page1'])
+
             return render(request, "message.html", {"message": "Congratulations! You are two steps away."})
         else:
             return render(request, "message.html", {"message": "Thank you for your participation."})

@@ -3,6 +3,9 @@ from .models import SurveyResponse
 
 
 class Page1Form(forms.ModelForm):
+    
+    other_category = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Specify Category'}))
+
     class Meta:
         model = SurveyResponse
         fields = ['full_name', 'gender', 'mobile_number', 'email', 'date_of_birth', 
@@ -75,5 +78,5 @@ class Page3Form(forms.ModelForm):
         'blood_donation' : forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]),
         'food_intolerances' : forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]),
         'dairy_consumption' : forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]),
-        'medications_taken' : forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')])
+        'medications_taken' : forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]),
         }
